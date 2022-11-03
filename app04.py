@@ -1,5 +1,6 @@
 import socket
 import time
+from tkinter  import *
 
 def iniciar_ami(usuario,clave):    
     s.send("Action: Login\n".encode())
@@ -24,15 +25,22 @@ def finalizar_ami():
     s.send("Action: Logoff\n".encode())
     s.send("\n".encode())
 
-print("Iniciando Programa")
+def revisar():
+    print("Ya di click")
+    llamar(200)
+
 s=socket.socket()
 s.connect(("192.168.1.11",5038))
+ventana = Tk()
+ventana.geometry("380x300")
+boton = Button(ventana,text="Llamar",command=revisar)
 
+"""
 print("Iniciando Login")
 iniciar_ami("Inori","1234")
 llamar(200)
 time.sleep(8)
 print("MAndando Logoff")
 finalizar_ami()
-
+"""
 print("Fin de programa")
