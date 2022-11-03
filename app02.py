@@ -20,7 +20,7 @@ s.connect(("192.168.1.11",5038))
 print("Iniciando Login")
 iniciar_ami("Inori","1234")
 time.sleep(8)
-print("MAndando Logoff")
+print("Mandando Logoff")
 finalizar_ami()
 
 print("Fin de programa")

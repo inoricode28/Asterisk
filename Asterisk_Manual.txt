@@ -1110,6 +1110,20 @@ Context: Prueba
 Exten: 445
 Priority: 1
 --------------------------------------------------
+Asterisk AMI
+https://pypi.org/project/asterisk-ami/
+-->pip install asterisk-ami
+
+
+---------------------------------------------------
+Asterisck AGI
+Asterisk GateWay Interface --> Cede el control
+dentro de extensions.conf
+
+extem=>444,n,AGI(Archivo,arg1,arg2,arg3,...)
+
+archivo ubicado en /var/lib/asterisk/agi-bin/
+Archivo con permisos...#chmod 777 archivo
 
 
 

@@ -34,7 +34,8 @@ s.connect(("192.168.1.11",5038))
 ventana = Tk()
 ventana.geometry("380x300")
 boton = Button(ventana,text="Llamar",command=revisar)
-
+boton.pack()
+ventana.mainloop()
 """
 print("Iniciando Login")
 iniciar_ami("Inori","1234")
