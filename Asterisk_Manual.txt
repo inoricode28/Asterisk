@@ -1043,4 +1043,74 @@ Nota: debemos en la nueva centrar convertir en bak a:
 ------------------------------------------------------------------------
 ------------------------------------------------------------------------
 Ami
+Configurar el Ami:
+/etc/asterisk/manager.conf
+
+--> mv manager.conf manager.conf.bak
+--> nano manager.conf
+Puerto que trabaja por defecto 5038
+[general]
+enable=yes
+webenable=no
+bindaadr=0.0.0.0
+
+[inori]
+secret=1234
+read=all
+write=all
+
+--> asterisk -rv
+--> reload
+--> manager show users
+--> manager show command Login
+Nota: para conectarte al manager debes ejecutar el siguiente comando
+-->apt-get install telnet
+--> telnet 192.168.1.11 5038
+
+//////escribir rapido
+--Asterisk Call Manager/6.0.0
+--->Action: Login
+--->Username: inori
+--->Secret: 1234
+---> ponen un enter
+
+///Response: Success
+Logramos acceder
+
+Nos dirigimos al asterisk y escribimos
+manager show connected
+
+Nota: para salir, una ves que ingresaste al manager se ejecuta
+-->Action: Logoff
+
+--------------------------------------------------------------
+--------------------------------------------------------------
+--> telnet 192.168.1.11 5038
+
+//////escribir rapido
+--Asterisk Call Manager/6.0.0
+--->Action: Login
+--->Username: inori
+--->Secret: 1234
+---> ponen un enter
+
+///Response: Success
+Logramos acceder
+
+Ejecucion del manager externamente
+-->Action: Ping
+-->Action: Reload
+-------------------------------------------------
+dentro de extensions.conf
+esto se ejecuta en un manager externo
+
+Action: Originate
+Channel: SIP/200
+Context: Prueba
+Exten: 445
+Priority: 1
+--------------------------------------------------
+
+
+
 
