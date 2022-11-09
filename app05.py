@@ -4,8 +4,8 @@ from asterisk.ami import SimpleAction
 def revisar():
     cliente.send_action(action)
     print("Ya di click")
-cliente = AMIClient(address='192.168.1.11',port=5038)
-cliente.login(username='inori',secret='1234')
+cliente = AMIClient(address='192.168.1.144',port=5038)
+cliente.login(username='nova',secret='1234')
 
 action = SimpleAction(
     'Originate',

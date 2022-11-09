@@ -30,7 +30,7 @@ def revisar():
     llamar(200)
 
 s=socket.socket()
-s.connect(("192.168.1.11",5038))
+s.connect(("192.168.1.144",5038))
 ventana = Tk()
 ventana.geometry("380x300")
 boton = Button(ventana,text="Llamar",command=revisar)

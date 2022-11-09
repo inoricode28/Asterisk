@@ -15,10 +15,10 @@ def finalizar_ami():
 
 print("Iniciando Programa")
 s=socket.socket()
-s.connect(("192.168.1.11",5038))
+s.connect(("192.168.1.144",5038))
 
 print("Iniciando Login")
-iniciar_ami("Inori","1234")
+iniciar_ami("nova","1234")
 time.sleep(8)
 print("Mandando Logoff")
 finalizar_ami()

@@ -5,7 +5,22 @@ Primero entraremos en modo root
  su - root
  usuario: nova
  pass: root
+ --------------------------------------------
+ --------------------------------------------
+ Recursos para trabajar con VSCODE
+ Deseamos trabajar con VSCODE y el SERVIDOR EN REMOTO
+ Instalar:
  
+Remote - SSH
+https://www.youtube.com/watch?v=0024IN0W5BU
+https://diarioprogramador.com/conectar-a-un-servidor-por-ssh-desde-visual-studio-code/
+
+liberar el root para conexcion SSH
+https://www.youtube.com/watch?v=rN-AfLIo-KQ&t=103s
+
+Extencion de VSCODE:
+Asterisk Syntax Highlighter
+
 
 Entrar a la carpeta donde se instalara los archivos previos
 --> cd /usr/src
@@ -689,7 +704,7 @@ format = gsm
 nota: guardamos con ctrl+x, yes y luego enter
 -----------------------------------------------
 debemos estare en modo root en la carpeta /etc/asterisk/
-Nota: hay que seguir con el extersions.conf
+Nota: hay que seguir con el extensions.conf
 --> nano extensions.conf
 
 [general]
@@ -759,7 +774,7 @@ debian*CLI> core set verbose 3
 
 ---------------------------------------------------------
 debemos estare en modo root en la carpeta /etc/asterisk/
-Nota: hay que seguir con el extersions.conf
+Nota: hay que seguir con el extensions.conf
 --> nano extensions.conf
 
 [general]
@@ -1033,9 +1048,52 @@ Nota: debemos en la nueva centrar convertir en bak a:
 --> mv iax.conf iax.conf.bak
 --> nano
 
+-------------------------------------------------------------------
+-------------------------------------------------------------------
+-------------------------------------------------------------------
 
+Intalaremos la base de datos:
+La base de datos es con mariaDB Server
 
+Debemos actualizar primero el sistema con el comando:
 
+-->apt-get update
+
+una vez actualizado, deberan instalar el porgrama de base de datos
+
+--> apt-get install mariadb-server
+
+para ingresar ala base de datos es:
+
+-->mysql -u root
+
+MariaDB[(none)]> CREATE USER 'nova'@'%' IDENTIFIED BY '1234';
+Query OK, 0 rows affected (0.000 sec)
+
+MariaDB[(none)]> GRANT ALL PRIVILEGES ON *.* TO 'nova'@'%';
+Query OK, 0 rows affected (0.000 sec)
+
+NOTA: El porcentaje es para que el usario pueda entrar desde cualquier lugar
+
+debemos ingresar al directorio: 
+--> cd /etc/muysql/mariadb.conf.d/
+--> nano 50-server.cnf
+
+buscamos en el archivo para poder remotear desde cualquier lado:
+
+bind-address          = 0.0.0.0
+
+debemos reiniciar una vez que pusimos la ip
+
+--> mysql stop
+mysql.service.
+
+-->mysql start
+mysql.service.
+
+instalar el DBeaver
+
+Establecer una nueva conexcion
 
 
 
@@ -1054,7 +1112,7 @@ enable=yes
 webenable=no
 bindaadr=0.0.0.0
 
-[inori]
+[nova]
 secret=1234
 read=all
 write=all
@@ -1126,5 +1184,72 @@ archivo ubicado en /var/lib/asterisk/agi-bin/
 Archivo con permisos...#chmod 777 archivo
 
 
+[prueba]
+exten => 444,1,AGI(test.py)
+----------------------------------------------
+nota: dirigirse a la ruta:
+cd /var/lib/asterisk/agi-bin/
+ls
+nano test.py
+dentro del archivo
 
+#!/usr/bin/python3
 
+import sys
+sys.stdout.write('VERBOSE "Hola Soy Python"\n')
+sys.stdout.flush()
+-----------------------------------------------
+En el programa Asterisk hay que hacer una actualizacion al Dialplan reload
+
+nota: hay que darle permisos de ejecucion
+--->chmod 777 test.py
+entramos al asterisk y desde un telefono llamamos al 444
+
+---------------------------------------------------------------------------------------
+vamos a modificar una vez mas el archivo
+
+nota: dirigirse a la ruta:
+cd /var/lib/asterisk/agi-bin/
+ls
+nano test.py
+dentro del archivo
+
+#!/usr/bin/python3
+
+import sys
+sys.stdout.write('ANSWER\n')
+sys.stdout.flush()
+sys.stdout.write('VERBOSE "Hola Soy Python"\n')
+sys.stdout.flush()
+-------------------------------------------------------------------------------------------
+[prueba]
+exten => 444,1,AGI(test.py)
+exten => 444,2,Hangup()
+
+nota depeus de modificar dentro de extensions.conf
+
+En el asterisk hacer:
+debian*CLI> dialplan reload
+
+-------------------------------------------------------------------------------------------
+vamos a modificar una vez mas el archivo
+
+nota: dirigirse a la ruta:
+cd /var/lib/asterisk/agi-bin/
+ls
+nano test.py
+dentro del archivo
+
+#!/usr/bin/python3
+
+import sys
+sys.stdout.write('ANSWER\n')
+sys.stdout.flush()
+sys.stdout.write('VERBOSE "Hola Soy Python"\n')
+sys.stdout.flush()
+sys.stdout.write('SAY ALPHA "Hola" ""\n')
+sys.stdout.flush()
+sys.stdout.write('SAY DIGITS 4321 ""\n')
+sys.stdout.flush()
+
+--------------------------------------------------------------------
