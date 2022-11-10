@@ -17,6 +17,13 @@ https://diarioprogramador.com/conectar-a-un-servidor-por-ssh-desde-visual-studio
 
 liberar el root para conexcion SSH
 https://www.youtube.com/watch?v=rN-AfLIo-KQ&t=103s
+-->nano /etc/ssh/sshd_config
+descomentar:
+PermiyRootLogin yes
+
+service ssh restart
+
+
 
 Extencion de VSCODE:
 Asterisk Syntax Highlighter
@@ -1076,7 +1083,7 @@ Query OK, 0 rows affected (0.000 sec)
 NOTA: El porcentaje es para que el usario pueda entrar desde cualquier lugar
 
 debemos ingresar al directorio: 
---> cd /etc/muysql/mariadb.conf.d/
+--> cd /etc/mysql/mariadb.conf.d/
 --> nano 50-server.cnf
 
 buscamos en el archivo para poder remotear desde cualquier lado:
@@ -1085,15 +1092,31 @@ bind-address          = 0.0.0.0
 
 debemos reiniciar una vez que pusimos la ip
 
---> mysql stop
+--> /etc/init.d/mysql stop
 mysql.service.
 
--->mysql start
+-->/etc/init.d/mysql start
 mysql.service.
-
+---------------------------------------------------------------
 instalar el DBeaver
+seguire el video de instalacion del manual
+
+https://dbeaver.io/download/
 
 Establecer una nueva conexcion
+
+instalar el odbc
+apt-get install unixodbc
+
+una vez establecida la conecxion 
+instalar en el servidor nova
+--> apt-get install unixodbc
+-->apt-get install git cmake
+
+nos dirigimos ala carpeta
+
+
+
 
 
 
@@ -1252,4 +1275,12 @@ sys.stdout.flush()
 sys.stdout.write('SAY DIGITS 4321 ""\n')
 sys.stdout.flush()
 
---------------------------------------------------------------------
+------------------------------------------------------------------------
+
+video 6 48
+
+
+/var/lib/asterisk/sounds/ <--
+/usr/share/asterisk/sounds
+
+
