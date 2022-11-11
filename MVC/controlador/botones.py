@@ -17,6 +17,8 @@ class Clark(QtWidgets.QMainWindow):#Boton es cambiable
         self.ventPrin.setupUi(self)         
         #self.ventPrin.pushButton_5.clicked.connect(lambda: self.close())
         #self.ventPrin.pushButton_6.clicked.connect(self.cerrar)
+
+        
         loadJsonStyle(self, self.ventPrin)
 
         self.ventPrin.pushButton.setObjectTheme(1)

@@ -1,6 +1,7 @@
 from tkinter  import *
 from asterisk.ami import AMIClient
 from asterisk.ami import SimpleAction
+
 def revisar():
     cliente.send_action(action)
     print("Ya di click")

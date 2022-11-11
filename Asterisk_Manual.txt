@@ -21,7 +21,7 @@ https://www.youtube.com/watch?v=rN-AfLIo-KQ&t=103s
 descomentar:
 PermiyRootLogin yes
 
-service ssh restart
+--> service ssh restart
 
 
 
@@ -31,7 +31,7 @@ Asterisk Syntax Highlighter
 
 Entrar a la carpeta donde se instalara los archivos previos
 --> cd /usr/src
-esta es la carpta donde se instalara
+esta es la carpeta donde se instalara
 
 Descargar los archivos a trabajar
 Instalar primero wget
