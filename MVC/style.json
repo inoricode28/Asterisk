@@ -37,7 +37,7 @@
 					"color": "white",
 					"size": 64,
 					"animation": "spin",
-					"animateOn": "hover"
+					"animateOn": "click"
 				}
 			]
 		},

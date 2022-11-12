@@ -1,3 +1,5 @@
+from asterisk.ami import AMIClient
+from asterisk.ami import SimpleAction
 from  PySide2 import QtWidgets , QtCore
 import sys
 import iconify as ico
@@ -15,10 +17,8 @@ class Clark(QtWidgets.QMainWindow):#Boton es cambiable
         super(Clark, self).__init__(parent)#Boton es cambiable
         self.ventPrin = Ui_MainWindow()# Particula
         self.ventPrin.setupUi(self)         
-        #self.ventPrin.pushButton_5.clicked.connect(lambda: self.close())
-        #self.ventPrin.pushButton_6.clicked.connect(self.cerrar)
-
-        
+        self.ventPrin.pushButton_2.clicked.connect(self.llamar_200)
+        #self.ventPrin.pushButton_6.clicked.connect(self.cerrar)        
         loadJsonStyle(self, self.ventPrin)
 
         self.ventPrin.pushButton.setObjectTheme(1)
@@ -37,7 +37,19 @@ class Clark(QtWidgets.QMainWindow):#Boton es cambiable
         #self.ventPrin.pushButton._animation.setEasingCurve(QtCore.QEasingCurve.InOutElastic)
         self.ventPrin.pushButton._animation.setEasingCurve(QtCore.QEasingCurve.InQuad)
     
-    #def cerrar(self):
-        #self.close()
+    def llamar_200(self):
+        self.cliente.send_action(self.action)
+        print("Ya di click")
+    cliente = AMIClient(address='192.168.1.144',port=5038)
+    cliente.login(username='nova',secret='1234')
+
+    action = SimpleAction(
+        'Originate',
+        Channel='SIP/200',
+        Exten='445',
+        Priority=1,
+        Context='prueba',
+        CallerID='Python',
+    )
         
     
