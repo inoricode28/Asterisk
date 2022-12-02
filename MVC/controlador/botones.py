@@ -1,3 +1,4 @@
+
 from asterisk.ami import AMIClient
 from asterisk.ami import SimpleAction
 from  PySide2 import QtWidgets , QtCore
@@ -8,17 +9,21 @@ from Custom_Widgets.Widgets import *
 #Vista.ui_botones eso signidica Carpeta.archivo
 #from vista.ui_botones import Ui_MainWindow #Ui_MainWindow es la clase que se encuentra en la particula
 from vista.ui_botones import Ui_MainWindow
+from controlador.integrantes import integrantes
+from controlador.conexcion import *
 #El nombre de la clase es cambiable
 #Driver el controlador
-class Clark(QtWidgets.QMainWindow):#Boton es cambiable
+class botones(QtWidgets.QMainWindow):#Boton es cambiable
     
-    def __init__(self, *args , parent=None):
-        
-        super(Clark, self).__init__(parent)#Boton es cambiable
+    def __init__(self, parent=None):        
+        super(botones, self).__init__(parent)#Boton es cambiable
         self.ventPrin = Ui_MainWindow()# Particula
-        self.ventPrin.setupUi(self)         
-        self.ventPrin.pushButton_2.clicked.connect(self.llamar_200)
-        #self.ventPrin.pushButton_6.clicked.connect(self.cerrar)        
+        self.ventPrin.setupUi(self)                 
+        self.ventPrin.pushButton_2.clicked.connect(self.telefono2)
+        self.ventPrin.pushButton_4.clicked.connect(self.integrantes)
+        self.ventPrin.pushButton_5.clicked.connect(self.Hola)
+        #self.ventPrin.pushButton_6.clicked.connect(self.cerrar) 
+        
         loadJsonStyle(self, self.ventPrin)
 
         self.ventPrin.pushButton.setObjectTheme(1)
@@ -37,19 +42,17 @@ class Clark(QtWidgets.QMainWindow):#Boton es cambiable
         #self.ventPrin.pushButton._animation.setEasingCurve(QtCore.QEasingCurve.InOutElastic)
         self.ventPrin.pushButton._animation.setEasingCurve(QtCore.QEasingCurve.InQuad)
     
-    def llamar_200(self):
-        self.cliente.send_action(self.action)
-        print("Ya di click")
-    cliente = AMIClient(address='192.168.1.144',port=5038)
-    cliente.login(username='nova',secret='1234')
+     
 
-    action = SimpleAction(
-        'Originate',
-        Channel='SIP/200',
-        Exten='445',
-        Priority=1,
-        Context='prueba',
-        CallerID='Python',
-    )
+    def telefono2(self):
+        llamar_200()
+    
+    def integrantes(self):
+        self.main = integrantes()
+        self.main.show()       
+        
+ 
+    def Hola(self):
+        print("Hola soy Asterisk")
         
     
