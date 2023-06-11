@@ -21,6 +21,10 @@ https://www.youtube.com/watch?v=rN-AfLIo-KQ&t=103s
 descomentar:
 PermiyRootLogin yes
 
+Arch
+-->systemctl restart sshd 
+
+Debian
 --> service ssh restart
 
 
